@@ -1,0 +1,8 @@
+tiktok_url: "https://vt.tiktok.com/ZSatjpvbJ/"
+out_dir: "outputs"
+whisper:
+  model: "small"
+  language: "es"
+audio:
+  sample_rate: 16000
+  channels: 1
