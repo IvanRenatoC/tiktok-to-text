@@ -12,3 +12,4 @@ outputs/*
 *.m4a
 cookies.txt
 *cookies*
+.DS_Store
