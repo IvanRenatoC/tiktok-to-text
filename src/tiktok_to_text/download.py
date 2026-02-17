@@ -36,7 +36,9 @@ def download_tiktok(
     except subprocess.CalledProcessError as e:
         raise RuntimeError(f"Falló yt-dlp.\nSTDOUT:\n{e.stdout}\n\nSTDERR:\n{e.stderr}") from e
 
-    lines = [l.strip() for l in res.stdout.splitlines() if l.strip()]
+    #lines = [l.strip() for l in res.stdout.splitlines() if l.strip()]
+    lines = [line.strip() for line in res.stdout.splitlines() if line.strip()]
+
     if not lines:
         raise RuntimeError("yt-dlp no devolvió filepath. Posible bloqueo/cookies.")
 
