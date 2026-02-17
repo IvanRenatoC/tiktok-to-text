@@ -5,12 +5,14 @@ from .audio import extract_audio
 from .download import download_tiktok
 from .transcribe import transcribe
 
+
 @dataclass
 class RunOutputs:
     video_path: Path
     audio_path: Path
     transcript_txt: Path
     transcript_json: Path
+
 
 def run(
     url: str,
@@ -37,7 +39,9 @@ def run(
 
     transcript_txt = out_dir / "transcript.txt"
     transcript_json = out_dir / "transcript.json"
-    transcribe(audio_path, transcript_txt, transcript_json, model_name=model, language=language)
+    transcribe(
+        audio_path, transcript_txt, transcript_json, model_name=model, language=language
+    )
 
     if not keep_video:
         try:

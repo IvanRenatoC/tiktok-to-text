@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 import whisper
 
+
 def transcribe(
     audio_path: str | Path,
     out_txt: str | Path,
@@ -21,5 +22,7 @@ def transcribe(
     text = (result.get("text") or "").strip()
 
     out_txt.write_text(text + "\n", encoding="utf-8")
-    out_json.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
+    out_json.write_text(
+        json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8"
+    )
     return text

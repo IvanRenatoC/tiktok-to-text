@@ -3,12 +3,17 @@ import shutil
 import subprocess
 from pathlib import Path
 
+
 class DependencyError(RuntimeError):
     pass
 
+
 def _require(cmd: str) -> None:
     if shutil.which(cmd) is None:
-        raise DependencyError(f"No encuentro '{cmd}' en PATH. Instálalo y prueba de nuevo.")
+        raise DependencyError(
+            f"No encuentro '{cmd}' en PATH. Instálalo y prueba de nuevo."
+        )
+
 
 def download_tiktok(
     url: str,
@@ -34,9 +39,11 @@ def download_tiktok(
     try:
         res = subprocess.run(cmd, check=True, capture_output=True, text=True)
     except subprocess.CalledProcessError as e:
-        raise RuntimeError(f"Falló yt-dlp.\nSTDOUT:\n{e.stdout}\n\nSTDERR:\n{e.stderr}") from e
+        raise RuntimeError(
+            f"Falló yt-dlp.\nSTDOUT:\n{e.stdout}\n\nSTDERR:\n{e.stderr}"
+        ) from e
 
-    #lines = [l.strip() for l in res.stdout.splitlines() if l.strip()]
+    # lines = [l.strip() for l in res.stdout.splitlines() if l.strip()]
     lines = [line.strip() for line in res.stdout.splitlines() if line.strip()]
 
     if not lines:
@@ -47,9 +54,13 @@ def download_tiktok(
         p = (out_dir / p).resolve()
 
     if not p.exists():
-        candidates = sorted(out_dir.glob("*"), key=lambda x: x.stat().st_mtime, reverse=True)
+        candidates = sorted(
+            out_dir.glob("*"), key=lambda x: x.stat().st_mtime, reverse=True
+        )
         if candidates:
             return candidates[0]
-        raise FileNotFoundError("No encontré el archivo descargado en el directorio de salida.")
+        raise FileNotFoundError(
+            "No encontré el archivo descargado en el directorio de salida."
+        )
 
     return p
