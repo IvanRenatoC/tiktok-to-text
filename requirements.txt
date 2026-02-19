@@ -1,3 +1,8 @@
-yt-dlp
-openai-wisper
-ffmpeg-python
+# Download TikTok videos
+yt-dlp>=2024.10.0
+
+# Transcription (Whisper)
+openai-whisper>=20231117
+
+# Read config.yaml (si lo usas en tu pipeline/CLI)
+PyYAML>=6.0.1
